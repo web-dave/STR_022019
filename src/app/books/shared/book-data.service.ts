@@ -36,6 +36,9 @@ export class BookDataService {
   getBook(isbn: string): Observable<IBook> {
     return this.http.get<IBook>(`${this.url}${isbn}`);
   }
+  deleteBook(isbn: string): Observable<string> {
+    return this.http.delete<string>(`${this.url}${isbn}`);
+  }
   updateBook(book: IBook): Observable<IBook> {
     return this.http.put<IBook>(`${this.url}${book.isbn}`, book);
   }

@@ -14,6 +14,10 @@ export class BookListComponent implements OnInit, OnDestroy {
   constructor(private service: BookDataService) {}
 
   ngOnInit() {
+    this.getBooks();
+  }
+
+  getBooks() {
     this.sub = this.service.getBooks().subscribe(
       data => {
         this.books = data;
@@ -24,5 +28,8 @@ export class BookListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log(this.sub);
     this.sub.unsubscribe();
+  }
+  delete(isbn: string) {
+    this.service.deleteBook(isbn).subscribe(() => this.getBooks());
   }
 }
