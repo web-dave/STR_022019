@@ -1,4 +1,11 @@
 <table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>
+      <a [routerLink]="['new']">🆕</a>
+    </td>
+  </tr>
   <tr *ngFor="let book of books">
     <td>{{ book.title }}</td>
     <td>{{ book.isbn }}</td>

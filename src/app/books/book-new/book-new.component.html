@@ -1,0 +1,39 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <label for="title"
+      >Titel
+      <label
+        class="ng-invalid"
+        [hidden]="!form.get('title').hasError('required')"
+      >
+        is required!
+      </label>
+    </label>
+    <input formControlName="title" />
+    <label for="subtitle"
+      >Subtitel
+      <label
+        class="ng-invalid"
+        [hidden]="!form.get('subtitle').hasError('required')"
+      >
+        is required!
+      </label></label
+    >
+
+    <input formControlName="subtitle" />
+    <label for="abstract"
+      >Abstract
+      <label
+        class="ng-invalid"
+        [hidden]="!form.get('abstract').hasError('required')"
+      >
+        is required!
+      </label>
+    </label>
+    <textarea formControlName="abstract"></textarea>
+
+    <button type="submit">Save</button>
+    <pre>{{ form.value | json }}</pre>
+  </form>
+  <button class="small" [routerLink]="['..']">Cancel</button>
+</div>

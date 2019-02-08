@@ -5,6 +5,7 @@ import { BookDetailComponent } from "./book-detail/book-detail.component";
 import { BooksComponent } from "./books.component";
 import { StayHereGuard } from "./stay-here.guard";
 import { BookEditComponent } from "./book-edit/book-edit.component";
+import { BookNewComponent } from "./book-new/book-new.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
         path: "",
         component: BookListComponent,
         canDeactivate: [StayHereGuard]
+      },
+      {
+        path: "new",
+        component: BookNewComponent
       },
       {
         path: ":isbn",
