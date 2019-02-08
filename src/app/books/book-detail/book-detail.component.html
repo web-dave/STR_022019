@@ -5,7 +5,12 @@
   <tr>
     <td>{{ book.abstract }}</td>
   </tr>
-  <tfoot>
+  <tr>
     <td>{{ book.author }}</td>
+  </tr>
+  <tfoot>
+    <td>
+      <a [routerLink]="['..']">Back</a> | <a [routerLink]="['edit']">Edit</a>
+    </td>
   </tfoot>
 </table>

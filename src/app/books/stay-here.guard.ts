@@ -17,7 +17,7 @@ export class StayHereGuard implements CanDeactivate<BookListComponent> {
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot
   ): boolean {
-    console.log(component, currentRoute, currentState, nextState);
-    return confirm("Are you sure?");
+    // console.log(component, currentRoute, currentState, nextState);
+    return true; //confirm("Are you sure?");
   }
 }
