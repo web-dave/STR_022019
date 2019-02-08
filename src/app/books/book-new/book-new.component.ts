@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BookDataService } from "../shared/book-data.service";
+import { IBook } from "../shared/book";
 
 @Component({
   selector: "book-new",
@@ -10,6 +11,7 @@ import { BookDataService } from "../shared/book-data.service";
 })
 export class BookNewComponent implements OnInit {
   form: FormGroup;
+  book: IBook;
   constructor(
     private builder: FormBuilder,
     private route: ActivatedRoute,
@@ -18,8 +20,12 @@ export class BookNewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.book = this.service.getNewBook();
     this.form = this.builder.group({
-      title: ["", Validators.required],
+      title: [
+        "",
+        Validators.compose([Validators.required, Validators.minLength(5)])
+      ],
       subtitle: ["", Validators.required],
       isbn: [""],
       abstract: ["", Validators.required],
@@ -33,7 +39,11 @@ export class BookNewComponent implements OnInit {
   }
 
   save() {
-    this.service.createBook(this.form.value).subscribe(b => {
+    const m = {
+      ...this.book,
+      ...this.form.value
+    };
+    this.service.createBook(m).subscribe(b => {
       this.router.navigate(["..", b.isbn], { relativeTo: this.route });
     });
   }

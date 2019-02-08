@@ -8,6 +8,12 @@
       >
         is required!
       </label>
+      <label
+        class="ng-invalid"
+        [hidden]="!form.get('title').hasError('minlength')"
+      >
+        is too short!
+      </label>
     </label>
     <input formControlName="title" />
     <label for="subtitle"

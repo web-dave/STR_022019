@@ -18,6 +18,21 @@ export class BookDataService {
       })
     );
   }
+
+  getNewBook(): IBook {
+    return {
+      title: "",
+      subtitle: "",
+      isbn: "",
+      abstract: "",
+      numPages: 0,
+      author: "",
+      publisher: {
+        name: "",
+        url: ""
+      }
+    };
+  }
   getBook(isbn: string): Observable<IBook> {
     return this.http.get<IBook>(`${this.url}${isbn}`);
   }
