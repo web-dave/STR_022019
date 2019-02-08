@@ -32,7 +32,7 @@ export class BookNewComponent implements OnInit {
       numPages: [0],
       author: [""],
       publisher: this.builder.group({
-        name: [""],
+        name: ["", Validators.minLength(3)],
         url: [""]
       })
     });

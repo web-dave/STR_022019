@@ -37,8 +37,22 @@
       </label>
     </label>
     <textarea formControlName="abstract"></textarea>
+    <div formGroupName="publisher">
+      <label
+        class="ng-invalid"
+        [hidden]="
+          !form
+            .get('publisher')
+            .get('name')
+            .hasError('minlength')
+        "
+      >
+        is not Ute!
+      </label>
+      <input formControlName="name" />
+    </div>
 
-    <button type="submit">Save</button>
+    <button [disabled]="form.invalid" type="submit">Save</button>
     <pre>{{ form.value | json }}</pre>
   </form>
   <button class="small" [routerLink]="['..']">Cancel</button>
