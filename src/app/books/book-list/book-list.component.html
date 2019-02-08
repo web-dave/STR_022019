@@ -1,0 +1,9 @@
+<table>
+  <tr *ngFor="let book of books">
+    <td>{{ book.title }}</td>
+    <td>{{ book.isbn }}</td>
+    <td>
+      <a [routerLink]="[book.isbn]">👁️</a>
+    </td>
+  </tr>
+</table>
