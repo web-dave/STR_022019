@@ -17,28 +17,25 @@ import { Subscription } from "rxjs";
 export class BookListComponent implements OnInit, OnDestroy {
   books: IBook[];
   sub: Subscription;
+  books$;
   constructor(private service: BookDataService) {}
 
   ngOnInit() {
     this.getBooks();
-
-    setInterval(() => {
-      console.log("Moin");
-      this.books[0].title += "q";
-    }, 3000);
   }
 
   getBooks() {
-    this.sub = this.service.getBooks().subscribe(
-      data => {
-        this.books = data;
-      },
-      err => console.error(err)
-    );
+    this.books$ = this.service.getBooks();
+    // this.sub = this.service.getBooks().subscribe(
+    //   data => {
+    //     this.books = data;
+    //   },
+    //   err => console.error(err)
+    // );
   }
   ngOnDestroy(): void {
-    console.log(this.sub);
-    this.sub.unsubscribe();
+    // console.log(this.sub);
+    // this.sub.unsubscribe();
   }
   delete(isbn: string) {
     this.service.deleteBook(isbn).subscribe(() => this.getBooks());

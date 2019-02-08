@@ -7,7 +7,7 @@
     </td>
   </tr>
   <book-preview
-    *ngFor="let book of books"
+    *ngFor="let book of (books$ | async)"
     [book]="book"
     (delete)="delete($event)"
   ></book-preview>
