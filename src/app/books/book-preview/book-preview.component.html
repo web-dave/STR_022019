@@ -1,0 +1,8 @@
+<tr>
+  <td>{{ book.title }}</td>
+  <td>{{ book.isbn }}</td>
+  <td>
+    <a [routerLink]="[book.isbn]">👁️</a>
+    <button (click)="doDelete(book.isbn)">🔨</button>
+  </td>
+</tr>

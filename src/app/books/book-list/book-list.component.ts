@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewEncapsulation,
+  ChangeDetectionStrategy
+} from "@angular/core";
 import { BookDataService } from "../shared/book-data.service";
 import { IBook } from "../shared/book";
 import { Subscription } from "rxjs";
@@ -15,6 +21,11 @@ export class BookListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getBooks();
+
+    setInterval(() => {
+      console.log("Moin");
+      this.books[0].title += "q";
+    }, 3000);
   }
 
   getBooks() {

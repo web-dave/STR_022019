@@ -6,12 +6,17 @@
       <a [routerLink]="['new']">🆕</a>
     </td>
   </tr>
-  <tr *ngFor="let book of books">
+  <book-preview
+    *ngFor="let book of books"
+    [book]="book"
+    (delete)="delete($event)"
+  ></book-preview>
+  <!-- <tr *ngFor="let book of books">
     <td>{{ book.title }}</td>
     <td>{{ book.isbn }}</td>
     <td>
       <a [routerLink]="[book.isbn]">👁️</a>
       <button (click)="delete(book.isbn)">🔨</button>
     </td>
-  </tr>
+  </tr> -->
 </table>
