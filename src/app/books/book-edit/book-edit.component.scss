@@ -21,6 +21,10 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  &.small {
+    width: 25%;
+    background-color: #f53737;
+  }
 }
 
 div {
