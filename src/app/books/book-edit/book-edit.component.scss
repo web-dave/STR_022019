@@ -7,9 +7,17 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  &.ng-invalid {
+    border: 3px solid red;
+  }
   //   &:hover {
   //     background-color: #45a049;
   //   }
+}
+label {
+  &.ng-invalid {
+    color: red;
+  }
 }
 
 button {

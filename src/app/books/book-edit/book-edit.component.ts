@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { switchMap } from "rxjs/operators";
 
 import { IBook } from "../shared/book";
@@ -14,7 +14,8 @@ export class BookEditComponent implements OnInit {
   book: IBook;
   constructor(
     private route: ActivatedRoute,
-    private service: BookDataService
+    private service: BookDataService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -25,5 +26,10 @@ export class BookEditComponent implements OnInit {
         )
       )
       .subscribe(b => (this.book = b));
+  }
+  save() {
+    this.service.updateBook(this.book).subscribe(b => {
+      this.router.navigate([".."], { relativeTo: this.route });
+    });
   }
 }

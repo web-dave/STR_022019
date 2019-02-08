@@ -1,6 +1,14 @@
 <div *ngIf="book">
-  <form>
-    <label for="title"></label>
+  <form #form="ngForm" (ngSubmit)="save()">
+    <label for="title"
+      >Titel
+      <label
+        class="ng-invalid"
+        [hidden]="!title.errors?.required || title.pristine"
+      >
+        is required!
+      </label>
+    </label>
     <input
       [(ngModel)]="book.title"
       #title="ngModel"
@@ -10,7 +18,16 @@
       required
       placeholder="Title"
     />
-    <label for="subtitle"></label>
+    <label for="subtitle"
+      >Subtitel
+      <label
+        class="ng-invalid"
+        [hidden]="!subtitle.errors?.required || subtitle.pristine"
+      >
+        is required!
+      </label></label
+    >
+
     <input
       [(ngModel)]="book.subtitle"
       #subtitle="ngModel"
@@ -20,7 +37,15 @@
       required
       placeholder="Subtitle"
     />
-    <label for="abstract"></label>
+    <label for="abstract"
+      >Abstract
+      <label
+        class="ng-invalid"
+        [hidden]="!abstract.errors?.required || abstract.pristine"
+      >
+        is required!
+      </label>
+    </label>
     <textarea
       [(ngModel)]="book.abstract"
       #abstract="ngModel"
@@ -33,6 +58,7 @@
     ></textarea>
 
     <button type="submit">Save</button>
+    <pre>{{ form.value | json }}</pre>
   </form>
   <button class="small" [routerLink]="['..']">Cancel</button>
 </div>
