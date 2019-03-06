@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { BookDataService } from "../shared/book-data.service";
 import { IBook } from "../shared/book";
 import { flatMap, switchMap } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "book-detail",
@@ -11,22 +12,15 @@ import { flatMap, switchMap } from "rxjs/operators";
 })
 export class BookDetailComponent implements OnInit {
   book: IBook;
+  book$: Observable<IBook>;
   constructor(
     private route: ActivatedRoute,
     private service: BookDataService
   ) {}
 
   ngOnInit() {
-    this.route.params
-      .pipe(
-        switchMap((params: { isbn: string }) =>
-          this.service.getBook(params.isbn)
-        )
-      )
-      .subscribe(b => (this.book = b));
-
-    // this.route.params.subscribe((params: { isbn: string }) => {
-    //   this.service.getBook(params.isbn).subscribe(b => (this.book = b));
-    // });
+    this.book$ = this.route.params.pipe(
+      switchMap((params: { isbn: string }) => this.service.getBook(params.isbn))
+    );
   }
 }

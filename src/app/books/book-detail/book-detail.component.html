@@ -1,4 +1,4 @@
-<table *ngIf="book">
+<!-- <table *ngIf="(book$ | async) as book">
   <thead>
     <th>{{ book.title }}</th>
   </thead>
@@ -13,4 +13,7 @@
       <a [routerLink]="['..']">Back</a> | <a [routerLink]="['edit']">Edit</a>
     </td>
   </tfoot>
-</table>
+</table> -->
+<label>{{ (book$ | async).title }}</label>
+<hr />
+<label>{{ (book$ | async).author }}</label>
